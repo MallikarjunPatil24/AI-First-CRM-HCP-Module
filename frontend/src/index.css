@@ -1,0 +1,245 @@
+/* ═══════════════════════════════════════════════════════════════
+   AI-First CRM – HCP Interaction Module
+   Global Stylesheet & Design System
+   Font: Inter (Google Fonts)
+   Theme: Light, minimal pharma — premium look
+═══════════════════════════════════════════════════════════════ */
+
+/* ─── Design Tokens ─────────────────────────────────────────── */
+:root {
+  /* Brand palette */
+  --clr-primary:        #1E6FD9;
+  --clr-primary-light:  #EBF3FF;
+  --clr-primary-dark:   #1352A8;
+  --clr-accent:         #0BB5A0;
+  --clr-accent-light:   #E0FAF7;
+
+  /* Neutrals */
+  --clr-bg:             #F0F4F9;
+  --clr-surface:        #FFFFFF;
+  --clr-surface-2:      #F8FAFC;
+  --clr-border:         #DDE4EE;
+  --clr-border-focus:   #1E6FD9;
+
+  /* Text */
+  --clr-text:           #0D1829;
+  --clr-text-secondary: #5A6882;
+  --clr-text-muted:     #93A3BB;
+  --clr-text-inverse:   #FFFFFF;
+
+  /* Status */
+  --clr-success:        #10B981;
+  --clr-warning:        #F59E0B;
+  --clr-danger:         #EF4444;
+  --clr-info:           #3B82F6;
+
+  /* Disabled form fields */
+  --clr-disabled-bg:    #F1F5FB;
+  --clr-disabled-text:  #4A5568;
+  --clr-disabled-border:#C8D3E5;
+
+  /* Chat */
+  --clr-bubble-user:    #1E6FD9;
+  --clr-bubble-user-text: #FFFFFF;
+  --clr-bubble-ai:      #FFFFFF;
+  --clr-bubble-ai-text: #0D1829;
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.10);
+  --shadow-focus: 0 0 0 3px rgba(30, 111, 217, 0.18);
+
+  /* Radii */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-md:   250ms ease;
+  --transition-slow: 400ms ease;
+
+  /* Typography */
+  --font-base: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* ─── Reset ──────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  font-family: var(--font-base);
+  background-color: var(--clr-bg);
+  color: var(--clr-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--clr-border); border-radius: var(--radius-full); }
+::-webkit-scrollbar-thumb:hover { background: var(--clr-text-muted); }
+
+/* ─── App Shell ──────────────────────────────────────────────── */
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ─── Top Header Bar ─────────────────────────────────────────── */
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 28px;
+  height: 60px;
+  background: var(--clr-surface);
+  border-bottom: 1px solid var(--clr-border);
+  box-shadow: var(--shadow-xs);
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.app-header__logo {
+  font-size: 22px;
+  line-height: 1;
+  user-select: none;
+}
+
+.app-header__title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--clr-text);
+  letter-spacing: -0.02em;
+}
+
+.app-header__subtitle {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--clr-text-muted);
+  margin-left: auto;
+  padding: 4px 10px;
+  background: var(--clr-primary-light);
+  color: var(--clr-primary);
+  border-radius: var(--radius-full);
+}
+
+/* ─── Split Screen Layout ────────────────────────────────────── */
+.app-split {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  gap: 0;
+}
+
+.panel-divider {
+  width: 1px;
+  background: var(--clr-border);
+  flex-shrink: 0;
+}
+
+/* ─── Loading Dots Animation ─────────────────────────────────── */
+.loading-dots {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 4px;
+}
+
+.loading-dots span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--clr-text-muted);
+  animation: dot-bounce 1.2s infinite ease-in-out;
+}
+
+.loading-dots span:nth-child(1) { animation-delay: 0s; }
+.loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+.loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes dot-bounce {
+  0%, 80%, 100% { transform: translateY(0);   opacity: 0.4; }
+  40%            { transform: translateY(-6px); opacity: 1;   }
+}
+
+/* ─── Field Flash Animation (triggered after AI update) ──────── */
+@keyframes field-flash {
+  0%   { background-color: var(--clr-primary-light); border-color: var(--clr-primary); }
+  100% { background-color: var(--clr-disabled-bg);   border-color: var(--clr-disabled-border); }
+}
+
+.field-highlight {
+  animation: field-flash 1.2s var(--transition-slow) forwards;
+}
+
+/* ─── Tag Pills (for array fields) ──────────────────────────── */
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-height: 32px;
+  padding: 6px 10px;
+  background: var(--clr-disabled-bg);
+  border: 1px solid var(--clr-disabled-border);
+  border-radius: var(--radius-sm);
+  cursor: not-allowed;
+}
+
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: var(--radius-full);
+  background: var(--clr-primary-light);
+  color: var(--clr-primary-dark);
+  border: 1px solid rgba(30, 111, 217, 0.2);
+  user-select: none;
+}
+
+.tag-pill--accent {
+  background: var(--clr-accent-light);
+  color: #0A8B7A;
+  border-color: rgba(11, 181, 160, 0.25);
+}
+
+/* ─── Sentiment Badge ────────────────────────────────────────── */
+.sentiment-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
+}
+
+.sentiment-badge--positive { background: #D1FAE5; color: #065F46; }
+.sentiment-badge--neutral  { background: #FEF3C7; color: #92400E; }
+.sentiment-badge--negative { background: #FEE2E2; color: #991B1B; }
+
+/* ─── Utility ────────────────────────────────────────────────── */
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
